@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
 import { CreatePayableDto } from './dto/create-payable.dto';
 import { PayablesService } from './payables.service';
+import { UpdatePayableDto } from './dto/update-payable.dto';
 
 @Controller('integrations/payable')
 export class PayablesController {
@@ -14,5 +15,20 @@ export class PayablesController {
   @Get(':id')
   async findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.payablesService.findOne(id);
-}
+  }
+
+  @Get()
+  async findAll() {
+    return this.payablesService.findAll();
+  }
+
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() updatePayableDto: UpdatePayableDto) {
+    return this.payablesService.update(id, updatePayableDto);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return this.payablesService.delete(id);
+  }
 }

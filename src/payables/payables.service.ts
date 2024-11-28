@@ -12,5 +12,17 @@ export class PayablesService {
 
   async findOne(id: string) {
     return this.prisma.payable.findUnique({ where: { id } });
-  }  
+  }
+
+  async findAll() {
+    return this.prisma.payable.findMany();
+  }
+
+  async update(id: string, data: any) {
+    return this.prisma.payable.update({ where: { id }, data });
+  }
+
+  async delete(id: string) {
+    return this.prisma.payable.delete({ where: { id } });
+  }
 }
