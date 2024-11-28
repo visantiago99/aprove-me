@@ -1,10 +1,6 @@
 import { IsNotEmpty, IsUUID, IsEmail, Length } from 'class-validator';
 
 export class CreateAssignorDto {
-  @IsUUID()
-  @IsNotEmpty()
-  id: string;
-
   @Length(1, 30)
   @IsNotEmpty()
   document: string;
