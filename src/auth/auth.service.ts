@@ -1,31 +1,46 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcryptjs';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
-  private readonly username = 'aprovame';
-  private readonly password = 'aprovame';
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly prisma: PrismaService,
+  ) {}
 
-  constructor(private jwtService: JwtService) {}
+  async validateUser(login: string, password: string) {
+    const user = await this.prisma.permission.findUnique({
+      where: { login },
+    });
 
-  async validateUser(login: string, password: string): Promise<boolean> {
-    if (login === this.username && password === this.password) {
-      return true;
+    if (user && user.password === password) { // Considere usar hashing aqui!
+      return user;
     }
-    return false;
+
+    throw new UnauthorizedException('Login ou senha inválidos.');
   }
 
   async login(login: string, password: string) {
-    const isValid = await this.validateUser(login, password);
+    const user = await this.validateUser(login, password);
 
-    if (!isValid) {
-      throw new Error('Invalid credentials');
+    const payload = { login: user.login, sub: user.id };
+    return {
+      accessToken: this.jwtService.sign(payload, { expiresIn: '1m' }),
+    };
+  }
+
+  async createPermission(login: string, password: string) {
+    const existingUser = await this.prisma.permission.findUnique({
+      where: { login },
+    });
+
+    if (existingUser) {
+      throw new Error('Login já cadastrado.');
     }
 
-    const payload = { login };
-    return {
-      access_token: this.jwtService.sign(payload, { expiresIn: '1m' }),
-    };
+    return this.prisma.permission.create({
+      data: { login, password },
+    });
   }
 }
