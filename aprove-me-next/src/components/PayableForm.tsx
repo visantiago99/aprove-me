@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
@@ -10,14 +10,26 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PayableFormFields, PayableFormSchema } from "@/schemas/PayableSchemas";
 import { usePayables } from "@/hooks/usePayables";
 import { useRouter } from "next/navigation";
+import { useAssignors } from "@/hooks/useAssignors";
+import { Assignor } from "@/types/assignorsType";
 
 const PayableForm: React.FC = () => {
   const { createPayables } = usePayables();
+  const { getAssignors } = useAssignors();
   const router = useRouter();
-  const assignors = [
-    { id: "329127c4-6b3d-4cfb-b34d-10669320ff9e", name: "Cedente 1" },
-    { id: "68f684a7-be39-40b8-ade3-7619fc28bdcf", name: "Cedente 2" },
-  ];
+  const [assignors, setAssignors] = useState<Assignor[]>([]);
+
+  const handleGetAssignors = async () => {
+    const assignors = await getAssignors();
+    console.log(assignors);
+    if (assignors) {
+      setAssignors(assignors)
+    }
+  }
+
+  useEffect(() => {
+    handleGetAssignors();
+  }, [])
 
   const form = useForm<PayableFormFields>({
     resolver: zodResolver(PayableFormSchema),
