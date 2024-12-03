@@ -8,6 +8,12 @@ export const usePayables = () => {
     return await requestWithAuth("http://localhost:3001/integrations/payable");
   };
 
+  const getPayableById = async (id: string) => {
+    return await requestWithAuth(
+      `http://localhost:3001/integrations/payable/${id}`
+    );
+  };
+
   const createPayables = async (data: PayableFormFields) => {
     const options: RequestInit = {
       method: "POST",
@@ -22,5 +28,5 @@ export const usePayables = () => {
     );
   };
 
-  return { getPayables, createPayables };
+  return { getPayables, createPayables, getPayableById };
 };

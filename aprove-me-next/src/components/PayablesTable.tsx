@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 import { usePayables } from '@/hooks/usePayables';
 import { formatDateBR } from '@/lib/formatDate';
+import Link from 'next/link';
 
 const PayablesTable = () => {
   const [payables, setPayables] = useState<Payable[]>([])
@@ -20,27 +21,31 @@ const PayablesTable = () => {
   }, []);
 
   return (
-      <>
-        <h1 className='text-4xl'>Recebíveis</h1>
-        <Table className='border'>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="text-left">Id</TableHead>
-              <TableHead>Valor</TableHead>
-              <TableHead className="text-right">Data de emissão</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {payables.length && payables.map((payable, index) => {
-              return (
-                <TableRow key={index}>
-                  <TableCell className="font-medium">{payable.id}</TableCell>
-                  <TableCell>{payable.value}</TableCell>
-                  <TableCell className="text-right">{formatDateBR(payable.emissionDate)}</TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
+    <>
+      <h1 className='text-4xl'>Recebíveis</h1>
+      <Table className='border'>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="text-left">Id</TableHead>
+            <TableHead>Valor</TableHead>
+            <TableHead className="text-right">Data de emissão</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {payables.length && payables.map((payable, index) => {
+            return (
+              <TableRow key={index}>
+                <TableCell className="font-medium">
+                  <Link href={`/payable/${payable.id}`}>
+                    {payable.id}
+                  </Link>
+                </TableCell>
+                <TableCell>{payable.value}</TableCell>
+                <TableCell className="text-right">{formatDateBR(payable.emissionDate)}</TableCell>
+              </TableRow>
+            )
+          })}
+        </TableBody>
       </Table>
     </>
   );
