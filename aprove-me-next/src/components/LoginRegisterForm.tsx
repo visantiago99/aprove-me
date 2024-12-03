@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { AuthFormData, loginPasswordSchema } from "@/utils/validationSchemas";
+import { AuthFormData, loginPasswordSchema } from "@/schemas/validationSchemas";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";

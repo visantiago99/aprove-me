@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 import { usePayables } from '@/hooks/usePayables';
-import { formatDateBR } from '@/utils/formatDate';
+import { formatDateBR } from '@/lib/formatDate';
 
 const PayablesTable = () => {
   const [payables, setPayables] = useState<Payable[]>([])
@@ -19,30 +19,30 @@ const PayablesTable = () => {
     handlePayables();
   }, []);
 
-  console.log(payables);
-  
-  
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="text-left">Id</TableHead>
-          <TableHead>Valor</TableHead>
-          <TableHead className="text-right">Data de emissão</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {payables.length && payables.map((payable, index) => {
-          return (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{payable.id}</TableCell>
-              <TableCell>{payable.value}</TableCell>
-              <TableCell className="text-right">{formatDateBR(payable.emissionDate)}</TableCell>
+      <>
+        <h1 className='text-4xl'>Recebíveis</h1>
+        <Table className='border'>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="text-left">Id</TableHead>
+              <TableHead>Valor</TableHead>
+              <TableHead className="text-right">Data de emissão</TableHead>
             </TableRow>
-          )
-        })}
-      </TableBody>
-  </Table>
+          </TableHeader>
+          <TableBody>
+            {payables.length && payables.map((payable, index) => {
+              return (
+                <TableRow key={index}>
+                  <TableCell className="font-medium">{payable.id}</TableCell>
+                  <TableCell>{payable.value}</TableCell>
+                  <TableCell className="text-right">{formatDateBR(payable.emissionDate)}</TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+      </Table>
+    </>
   );
 }
 

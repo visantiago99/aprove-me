@@ -1,4 +1,4 @@
-import { isTokenExpired } from "@/utils/verifyToken";
+import { isTokenExpired } from "@/lib/verifyToken";
 import { useRouter } from "next/navigation";
 
 export const useRequestWithAuth = () => {

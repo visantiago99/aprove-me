@@ -2,7 +2,7 @@
 import LoginRegisterForm from '@/components/LoginRegisterForm';
 import { Button } from '@/components/ui/button';
 import { loginUser } from '@/hooks/useAuth';
-import { AuthFormData } from '@/utils/validationSchemas';
+import { AuthFormData } from '@/schemas/validationSchemas';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'

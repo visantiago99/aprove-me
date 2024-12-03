@@ -1,4 +1,4 @@
-import { AuthFormData } from "@/utils/validationSchemas";
+import { AuthFormData } from "@/schemas/validationSchemas";
 
 export const registerUser = async (data: AuthFormData) => {
   const res = await fetch("http://localhost:3001/auth/register", {

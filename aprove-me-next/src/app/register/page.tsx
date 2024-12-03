@@ -1,7 +1,7 @@
 "use client";
 import LoginRegisterForm from '@/components/LoginRegisterForm';
 import { registerUser } from '@/hooks/useAuth';
-import { AuthFormData } from '@/utils/validationSchemas';
+import { AuthFormData } from '@/schemas/validationSchemas';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 

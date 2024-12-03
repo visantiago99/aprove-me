@@ -1,3 +1,4 @@
+import { PayableFormFields } from "@/schemas/PayableSchemas";
 import { useRequestWithAuth } from "./useRequestWithAuth";
 
 export const usePayables = () => {
@@ -7,5 +8,19 @@ export const usePayables = () => {
     return await requestWithAuth("http://localhost:3001/integrations/payable");
   };
 
-  return { getPayables };
+  const createPayables = async (data: PayableFormFields) => {
+    const options: RequestInit = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return await requestWithAuth(
+      "http://localhost:3001/integrations/payable",
+      options
+    );
+  };
+
+  return { getPayables, createPayables };
 };
