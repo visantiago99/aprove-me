@@ -21,7 +21,6 @@ const PayableForm: React.FC = () => {
 
   const handleGetAssignors = async () => {
     const assignors = await getAssignors();
-    console.log(assignors);
     if (assignors) {
       setAssignors(assignors)
     }
@@ -42,7 +41,6 @@ const PayableForm: React.FC = () => {
 
   const onSubmit = async (data: PayableFormFields) => {
     const createPayablesRequest = await createPayables({ ...data, emissionDate: new Date(data.emissionDate).toISOString() });
-    console.log(createPayablesRequest);
     if (createPayablesRequest?.id) {
       router.push(`/payable/${createPayablesRequest.id}`)
     }

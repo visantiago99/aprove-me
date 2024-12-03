@@ -4,6 +4,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { usePayables } from '@/hooks/usePayables';
 import { formatDateBR } from '@/lib/formatDate';
 import Link from 'next/link';
+import { Edit, Trash } from 'lucide-react';
 
 const PayablesTable = () => {
   const [payables, setPayables] = useState<Payable[]>([])
@@ -28,7 +29,8 @@ const PayablesTable = () => {
           <TableRow>
             <TableHead className="text-left">Id</TableHead>
             <TableHead>Valor</TableHead>
-            <TableHead className="text-right">Data de emissão</TableHead>
+            <TableHead>Data de emissão</TableHead>
+            <TableHead className="text-center">Ações</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -41,7 +43,13 @@ const PayablesTable = () => {
                   </Link>
                 </TableCell>
                 <TableCell>{payable.value}</TableCell>
-                <TableCell className="text-right">{formatDateBR(payable.emissionDate)}</TableCell>
+                <TableCell>{formatDateBR(payable.emissionDate)}</TableCell>
+                <TableCell className="text-center">
+                  <div className='flex justify-around'>
+                    <Edit width={16} height={16} className='cursor-pointer' />
+                    <Trash width={16} height={16} className='cursor-pointer' />
+                  </div>
+                </TableCell>
               </TableRow>
             )
           })}
