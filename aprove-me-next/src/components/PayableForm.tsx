@@ -13,8 +13,13 @@ import { useRouter } from "next/navigation";
 import { useAssignors } from "@/hooks/useAssignors";
 import { Assignor } from "@/types/assignorsType";
 
-const PayableForm: React.FC = () => {
-  const { createPayables } = usePayables();
+interface PayableFormProps {
+  isEdit?: boolean;
+  payable?: PayableWithAssignor;
+}
+
+const PayableForm = ({ isEdit, payable }: PayableFormProps) => {
+  const { createPayables, updatePayables } = usePayables();
   const { getAssignors } = useAssignors();
   const router = useRouter();
   const [assignors, setAssignors] = useState<Assignor[]>([]);
@@ -33,16 +38,23 @@ const PayableForm: React.FC = () => {
   const form = useForm<PayableFormFields>({
     resolver: zodResolver(PayableFormSchema),
     defaultValues: {
-      value: 0,
-      emissionDate: "",
-      assignorId: "",
+      value: isEdit && payable ? payable.value : 0,
+      emissionDate: isEdit && payable ? payable.emissionDate.split("T")[0] : "",
+      assignorId: isEdit && payable ? payable.assignorId : "",
     },
   });
 
   const onSubmit = async (data: PayableFormFields) => {
-    const createPayablesRequest = await createPayables({ ...data, emissionDate: new Date(data.emissionDate).toISOString() });
-    if (createPayablesRequest?.id) {
-      router.push(`/payable/${createPayablesRequest.id}`)
+    if (!isEdit) {
+      const createPayablesRequest = await createPayables({ ...data, emissionDate: new Date(data.emissionDate).toISOString() });
+      if (createPayablesRequest?.id) {
+        router.push(`/payable/${createPayablesRequest.id}`)
+      }
+    }
+
+    if (isEdit && payable) {
+      const updatePayableRequest = await updatePayables(payable.id, { ...data, emissionDate: new Date(data.emissionDate).toISOString() });
+      console.log(updatePayableRequest);
     }
   };
 

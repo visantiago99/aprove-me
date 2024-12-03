@@ -28,5 +28,19 @@ export const usePayables = () => {
     );
   };
 
-  return { getPayables, createPayables, getPayableById };
+  const updatePayables = async (id: string, data: PayableFormFields) => {
+    const options: RequestInit = {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return await requestWithAuth(
+      `http://localhost:3001/integrations/payable/${id}`,
+      options
+    );
+  };
+
+  return { getPayables, createPayables, getPayableById, updatePayables };
 };

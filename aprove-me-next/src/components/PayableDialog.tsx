@@ -8,12 +8,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import PayableForm from "./PayableForm"
+import { Edit } from "lucide-react";
 
-export function PayableDialog() {
+interface PayableDialogProps {
+  isEdit?: boolean;
+  payable?: PayableWithAssignor;
+}
+
+export function PayableDialog({ isEdit, payable }: PayableDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Adicionar Recebível</Button>
+        {!isEdit ? <Button variant="outline">Adicionar Recebível</Button> : <Edit width={16} height={16} className='cursor-pointer' />}
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
@@ -22,7 +28,7 @@ export function PayableDialog() {
             Preencha os campos para registrar um novo recebível
           </DialogDescription>
         </DialogHeader>
-        <PayableForm />
+        <PayableForm isEdit={isEdit} payable={payable} />
       </DialogContent>
     </Dialog>
   )

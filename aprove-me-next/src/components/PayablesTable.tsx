@@ -4,10 +4,11 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { usePayables } from '@/hooks/usePayables';
 import { formatDateBR } from '@/lib/formatDate';
 import Link from 'next/link';
-import { Edit, Trash } from 'lucide-react';
+import { Trash } from 'lucide-react';
+import { PayableDialog } from './PayableDialog';
 
 const PayablesTable = () => {
-  const [payables, setPayables] = useState<Payable[]>([])
+  const [payables, setPayables] = useState<PayableWithAssignor[]>([])
   const { getPayables } = usePayables();
 
   const handlePayables = async () => {
@@ -46,7 +47,7 @@ const PayablesTable = () => {
                 <TableCell>{formatDateBR(payable.emissionDate)}</TableCell>
                 <TableCell className="text-center">
                   <div className='flex justify-around'>
-                    <Edit width={16} height={16} className='cursor-pointer' />
+                    <PayableDialog isEdit payable={payable} />
                     <Trash width={16} height={16} className='cursor-pointer' />
                   </div>
                 </TableCell>
