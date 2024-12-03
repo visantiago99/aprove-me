@@ -5,9 +5,9 @@ export class CreatePayableDto {
   @IsNotEmpty()
   value: number;
 
-  // @IsDateString()
-  // @IsNotEmpty()
-  // emissionDate: string;
+  @IsDateString()
+  @IsNotEmpty()
+  emissionDate: string;
 
   @IsUUID()
   @IsNotEmpty()
