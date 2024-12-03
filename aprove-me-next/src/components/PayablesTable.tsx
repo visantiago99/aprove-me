@@ -47,7 +47,7 @@ const PayablesTable = () => {
                 <TableCell>{formatDateBR(payable.emissionDate)}</TableCell>
                 <TableCell className="text-center">
                   <div className='flex justify-around'>
-                    <PayableDialog isEdit payable={payable} />
+                    <PayableDialog isEdit payable={payable} handlePayables={handlePayables} />
                     <Trash width={16} height={16} className='cursor-pointer' />
                   </div>
                 </TableCell>

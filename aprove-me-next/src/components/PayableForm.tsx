@@ -16,9 +16,11 @@ import { Assignor } from "@/types/assignorsType";
 interface PayableFormProps {
   isEdit?: boolean;
   payable?: PayableWithAssignor;
+  closeDialog?: () => void;
+  handlePayables?: () => Promise<void>;
 }
 
-const PayableForm = ({ isEdit, payable }: PayableFormProps) => {
+const PayableForm = ({ isEdit, payable, closeDialog, handlePayables }: PayableFormProps) => {
   const { createPayables, updatePayables } = usePayables();
   const { getAssignors } = useAssignors();
   const router = useRouter();
@@ -52,9 +54,12 @@ const PayableForm = ({ isEdit, payable }: PayableFormProps) => {
       }
     }
 
-    if (isEdit && payable) {
+    if (isEdit && payable && closeDialog && handlePayables) {
       const updatePayableRequest = await updatePayables(payable.id, { ...data, emissionDate: new Date(data.emissionDate).toISOString() });
-      console.log(updatePayableRequest);
+      if (updatePayableRequest) {
+        closeDialog();
+        handlePayables();
+      }
     }
   };
 
