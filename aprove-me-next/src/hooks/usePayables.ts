@@ -4,8 +4,7 @@ export const usePayables = () => {
   const requestWithAuth = useRequestWithAuth();
 
   const getPayables = async () => {
-    const payablesRes = await requestWithAuth("http://localhost:3001/integrations/payable");
-    console.log(payablesRes);
+    return await requestWithAuth("http://localhost:3001/integrations/payable");
   };
 
   return { getPayables };

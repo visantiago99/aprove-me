@@ -1,33 +1,46 @@
 "use client";
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 import { usePayables } from '@/hooks/usePayables';
+import { formatDateBR } from '@/utils/formatDate';
 
 const PayablesTable = () => {
+  const [payables, setPayables] = useState<Payable[]>([])
   const { getPayables } = usePayables();
 
+  const handlePayables = async () => {
+    const payables = await getPayables();
+    if (payables.length) {
+      setPayables(payables)
+    }
+  }
+
   useEffect(() => {
-    getPayables();
+    handlePayables();
   }, []);
+
+  console.log(payables);
+  
   
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead className="text-left">Id</TableHead>
+          <TableHead>Valor</TableHead>
+          <TableHead className="text-right">Data de emissão</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">INV001</TableCell>
-          <TableCell>Paid</TableCell>
-          <TableCell>Credit Card</TableCell>
-          <TableCell className="text-right">$250.00</TableCell>
-        </TableRow>
+        {payables.length && payables.map((payable, index) => {
+          return (
+            <TableRow key={index}>
+              <TableCell className="font-medium">{payable.id}</TableCell>
+              <TableCell>{payable.value}</TableCell>
+              <TableCell className="text-right">{formatDateBR(payable.emissionDate)}</TableCell>
+            </TableRow>
+          )
+        })}
       </TableBody>
   </Table>
   );
