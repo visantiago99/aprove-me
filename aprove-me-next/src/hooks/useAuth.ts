@@ -35,10 +35,6 @@ export const loginUser = async (data: AuthFormData) => {
 
   const responseData = await res.json();
 
-  console.log(responseData);
-  
-
-  // Armazenar o token no localStorage
   localStorage.setItem("accessToken", responseData.accessToken);
 
   return responseData;
