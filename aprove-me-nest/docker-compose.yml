@@ -1,0 +1,13 @@
+services:
+  nestjs-api:
+    build: .
+    container_name: nestjs-api
+    ports:
+      - '3001:3001'
+    volumes:
+      - ./prisma:/usr/src/api/prisma
+      - ./.env:/usr/src/api/.env
+    environment:
+      DATABASE_URL: 'file:/usr/src/api/prisma/dev.db'
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+    command: ['npm', 'run', 'start']
