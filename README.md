@@ -4,18 +4,18 @@
 
 ### Back-end
 
-- [x] **Nível 1 - Validation**
-- [x] **Nível 2 - Persistency**
-- [x] **Nível 4 - Authentication**
-- [x] **Nível 5 - Permissions Management**
+- [x] **Level 1 - Validation**
+- [x] **Level 2 - Persistency**
+- [x] **Level 4 - Authentication**
+- [x] **Level 5 - Permissions Management**
 
 ### Front-end
 
-- [x] **Nível 1 - Register**
-- [x] **Nível 2 - Connecting to the API**
-- [x] **Nível 3 - Listing**
-- [x] **Nível 4 - Authentication**
-- [x] **Nível 5 - Tests**
+- [x] **Level 1 - Register**
+- [x] **Level 2 - Connecting to the API**
+- [x] **Level 3 - Listing**
+- [x] **Level 4 - Authentication**
+- [x] **Level 5 - Tests**
 
 ## Backend
 
