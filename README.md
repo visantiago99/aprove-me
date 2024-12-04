@@ -8,6 +8,7 @@
 - [x] **Level 2 - Persistency**
 - [x] **Level 4 - Authentication**
 - [x] **Level 5 - Permissions Management**
+- [x] **Level 6 - Infra and Docker**
 
 ### Front-end
 
