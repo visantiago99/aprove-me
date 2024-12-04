@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { Trash } from 'lucide-react';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { usePayables } from '@/hooks/usePayables';
 
 interface PayableDeleteDialogProps { payableId: string, handlePayables: () => Promise<void> }

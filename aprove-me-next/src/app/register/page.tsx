@@ -1,5 +1,5 @@
 "use client";
-import LoginRegisterForm from '@/components/LoginRegisterForm';
+import LoginRegisterForm from '@/components/login/LoginRegisterForm';
 import { registerUser } from '@/hooks/useAuth';
 import { AuthFormData } from '@/schemas/validationSchemas';
 import { useRouter } from 'next/navigation';
@@ -7,10 +7,10 @@ import React from 'react'
 
 const RegisterPage = () => {
   const router = useRouter();
-  
+
   const handleRegister = async (data: AuthFormData) => {
     const register = await registerUser(data);
-    
+
     if (register) {
       router.push("/login");
     }

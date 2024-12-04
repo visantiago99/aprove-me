@@ -1,7 +1,7 @@
 "use client";
-import { AssignorDialog } from "@/components/AssignorDialog";
-import { PayableDialog } from "@/components/PayableDialog";
-import PayablesTable from "@/components/PayablesTable";
+import { AssignorDialog } from "@/components/assignors/AssignorDialog";
+import { PayableDialog } from "@/components/payables/PayableDialog";
+import PayablesTable from "@/components/payables/PayablesTable";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
