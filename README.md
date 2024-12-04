@@ -81,6 +81,9 @@ Password: aprovame
 ## Technologies Used
 
 Backend: NestJS, Prisma ORM, SQLite
+
 Frontend: Next.js, Tailwind CSS, Shadcn
+
 Form Validation: Zod, React Hook Form
+
 Authentication: JWT with 1-minute expiration
