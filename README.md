@@ -47,6 +47,33 @@ JWT_SECRET=f3d9f5d8b6a544b5b149fe6d3d739b05fa27ec5a02b763d8b4a9738a8ee4c928
 
 DATABASE_URL="file:./dev.db"
 ```
+You can also run from docker image:
+
+To build the Docker image, run the following command in the project root directory (where the Dockerfile is located):
+
+```sh
+docker build -t nestjs-api .
+```
+
+To ensure that the Prisma Client is generated correctly within the container, use the command:
+
+```sh
+docker exec -it nestjs-api npx prisma generate
+```
+
+After building the image, you can run the project using Docker Compose. docker-compose.yml is configured to orchestrate the container and ensure that the application runs correctly.
+
+To run the container, run the command:
+
+```sh
+docker-compose up --build
+```
+
+To stop containers running with Docker Compose, use the following command:
+
+```sh
+docker-compose down
+```
 
 ## Frontend
 
@@ -87,3 +114,5 @@ Frontend: Next.js, Tailwind CSS, Shadcn
 Form Validation: Zod, React Hook Form
 
 Authentication: JWT with 1-minute expiration
+
+Containerization: Docker
