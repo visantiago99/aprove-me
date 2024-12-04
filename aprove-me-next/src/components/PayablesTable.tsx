@@ -40,7 +40,7 @@ const PayablesTable = () => {
             return (
               <TableRow key={index}>
                 <TableCell className="font-medium">
-                  <Link href={`/payable/${payable.id}`}>
+                  <Link href={`/payable/${payable.id}`} className='text-blue-500'>
                     {payable.id}
                   </Link>
                 </TableCell>

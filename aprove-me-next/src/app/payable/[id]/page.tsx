@@ -29,6 +29,9 @@ const PayableDetailsPage = () => {
     return <div>Loading...</div>;
   }
 
+  console.log(payable.assignorId);
+
+
   return (
     <div className="p-4 flex flex-col gap-4">
       <Card>
@@ -41,13 +44,13 @@ const PayableDetailsPage = () => {
               <strong>ID:</strong> {payable.id}
             </p>
             <p>
-              <strong>Cedente:</strong> {payable.assignorId}
-            </p>
-            <p>
               <strong>Valor:</strong> R$ {payable.value.toFixed(2)}
             </p>
             <p>
               <strong>Data de Emissão:</strong> {formatDateBR(payable.emissionDate)}
+            </p>
+            <p>
+              <strong>Link para Cedente:</strong><Link href={`/assignor/${payable.assignorId}`} className='text-blue-500'>{payable.assignorId}</Link>
             </p>
           </div>
         </CardContent>

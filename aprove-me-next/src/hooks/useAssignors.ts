@@ -7,11 +7,11 @@ export const useAssignors = () => {
     return await requestWithAuth("http://localhost:3001/integrations/assignor");
   };
 
-  // const getPayableById = async (id: string) => {
-  //   return await requestWithAuth(
-  //     `http://localhost:3001/integrations/payable/${id}`
-  //   );
-  // };
+  const getAssignorById = async (id: string) => {
+    return await requestWithAuth(
+      `http://localhost:3001/integrations/assignor/${id}`
+    );
+  };
 
   // const createPayables = async (data: PayableFormFields) => {
   //   const options: RequestInit = {
@@ -27,5 +27,5 @@ export const useAssignors = () => {
   //   );
   // };
 
-  return { getAssignors };
+  return { getAssignors, getAssignorById };
 };
