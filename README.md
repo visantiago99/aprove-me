@@ -117,3 +117,8 @@ Form Validation: Zod, React Hook Form
 Authentication: JWT with 1-minute expiration
 
 Containerization: Docker
+
+# Video of the project 
+[screen-capture.webm](https://github.com/user-attachments/assets/52e8c5be-3d4a-477d-a0ad-3928289a06b8)
+
+
