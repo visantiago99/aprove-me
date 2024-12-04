@@ -42,5 +42,24 @@ export const usePayables = () => {
     );
   };
 
-  return { getPayables, createPayables, getPayableById, updatePayables };
+  const deletePayableById = async (id: string) => {
+    const options: RequestInit = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return await requestWithAuth(
+      `http://localhost:3001/integrations/payable/${id}`,
+      options
+    );
+  };
+
+  return {
+    getPayables,
+    createPayables,
+    getPayableById,
+    updatePayables,
+    deletePayableById,
+  };
 };

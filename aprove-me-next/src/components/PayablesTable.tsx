@@ -6,6 +6,7 @@ import { formatDateBR } from '@/lib/formatDate';
 import Link from 'next/link';
 import { Trash } from 'lucide-react';
 import { PayableDialog } from './PayableDialog';
+import PayableDeleteDialog from './PayableDeleteDialog';
 
 const PayablesTable = () => {
   const [payables, setPayables] = useState<PayableWithAssignor[]>([])
@@ -48,7 +49,7 @@ const PayablesTable = () => {
                 <TableCell className="text-center">
                   <div className='flex justify-around'>
                     <PayableDialog isEdit payable={payable} handlePayables={handlePayables} />
-                    <Trash width={16} height={16} className='cursor-pointer' />
+                    <PayableDeleteDialog payableId={payable.id} handlePayables={handlePayables} />
                   </div>
                 </TableCell>
               </TableRow>

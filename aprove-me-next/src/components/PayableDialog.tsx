@@ -23,7 +23,6 @@ export function PayableDialog({ isEdit, payable, handlePayables }: PayableDialog
 
   const closeDialog = () => setOpen(false);
 
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -31,9 +30,9 @@ export function PayableDialog({ isEdit, payable, handlePayables }: PayableDialog
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Crie um recebível</DialogTitle>
+          <DialogTitle>{!isEdit ? "Crie um recebível" : "Edite um recebível"}</DialogTitle>
           <DialogDescription>
-            Preencha os campos para registrar um novo recebível
+            {`Preencha os campos para ${!isEdit ? "registrar" : "editar"} um novo recebível`}
           </DialogDescription>
         </DialogHeader>
         <PayableForm isEdit={isEdit} payable={payable} closeDialog={closeDialog} handlePayables={handlePayables} />
