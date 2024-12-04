@@ -4,20 +4,23 @@ import { PayableDialog } from "@/components/payables/PayableDialog";
 import PayablesTable from "@/components/payables/PayablesTable";
 import { isTokenExpired } from "@/lib/verifyToken";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
-  const token = localStorage.getItem("accessToken");
-  const isInvalidToken = !token || isTokenExpired(token);
+  const [isInvalidToken, setIsInvalidToken] = useState(true);
 
   useEffect(() => {
-    if (isInvalidToken) {
+    const token = localStorage.getItem("accessToken");
+    const invalidToken = !token || isTokenExpired(token);
+    setIsInvalidToken(invalidToken);
+
+    if (invalidToken) {
       setTimeout(() => {
         router.push("/login");
       }, 1500);
     }
-  }, []);
+  }, [router]);
 
   return (
     <main className="flex items-center justify-items-center min-h-screen p-8">
