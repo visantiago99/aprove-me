@@ -1,3 +1,4 @@
+import { AssignorFormFields } from "@/schemas/AssignorSchemas";
 import { useRequestWithAuth } from "./useRequestWithAuth";
 
 export const useAssignors = () => {
@@ -13,19 +14,19 @@ export const useAssignors = () => {
     );
   };
 
-  // const createPayables = async (data: PayableFormFields) => {
-  //   const options: RequestInit = {
-  //     method: "POST",
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   return await requestWithAuth(
-  //     "http://localhost:3001/integrations/payable",
-  //     options
-  //   );
-  // };
+  const createAssignor = async (data: AssignorFormFields) => {
+    const options: RequestInit = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return await requestWithAuth(
+      "http://localhost:3001/integrations/assignor",
+      options
+    );
+  };
 
-  return { getAssignors, getAssignorById };
+  return { getAssignors, getAssignorById, createAssignor };
 };

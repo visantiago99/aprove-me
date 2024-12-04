@@ -9,7 +9,7 @@ export const useRequestWithAuth = () => {
 
     if (!token || isTokenExpired(token)) {
       router.push("/login");
-      throw new Error("Token expired or not found");
+      alert("Token expirado ou não encontrado");
     }
 
     const headers = {
@@ -20,7 +20,7 @@ export const useRequestWithAuth = () => {
     const res = await fetch(url, { ...options, headers });
 
     if (!res.ok) {
-      throw new Error(`Request failed: ${res.status}`);
+      console.error(`Request failed: ${res.status}`);
     }
 
     return res.json();

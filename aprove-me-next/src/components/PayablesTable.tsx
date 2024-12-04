@@ -36,25 +36,31 @@ const PayablesTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {payables.length && payables.map((payable, index) => {
-            return (
+          {payables.length > 0 ? (
+            payables.map((payable, index) => (
               <TableRow key={index}>
                 <TableCell className="font-medium">
-                  <Link href={`/payable/${payable.id}`} className='text-blue-500'>
+                  <Link href={`/payable/${payable.id}`} className="text-blue-500">
                     {payable.id}
                   </Link>
                 </TableCell>
                 <TableCell>{payable.value}</TableCell>
                 <TableCell>{formatDateBR(payable.emissionDate)}</TableCell>
                 <TableCell className="text-center">
-                  <div className='flex justify-around'>
+                  <div className="flex justify-around">
                     <PayableDialog isEdit payable={payable} handlePayables={handlePayables} />
                     <PayableDeleteDialog payableId={payable.id} handlePayables={handlePayables} />
                   </div>
                 </TableCell>
               </TableRow>
-            )
-          })}
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={4} className="text-center">
+                Nenhum recebível encontrado.
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </>

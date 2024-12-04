@@ -1,3 +1,5 @@
+"use client";
+import { AssignorDialog } from "@/components/AssignorDialog";
 import { PayableDialog } from "@/components/PayableDialog";
 import PayablesTable from "@/components/PayablesTable";
 import { Button } from "@/components/ui/button";
@@ -8,9 +10,7 @@ export default function Home() {
       <div className="flex flex-col w-full">
         <div className="w-full flex justify-end gap-4">
           <PayableDialog />
-          <Button className="w-44">
-            Adicionar Cedente
-          </Button>
+          <AssignorDialog />
         </div>
         <PayablesTable />
       </div>
